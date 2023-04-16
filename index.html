@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Binary Clock</title>
+    <style>
+      body {
+        font-family: inconsolata, monospace;
+        text-align: center;
+        background-color: #222;
+        color: #fff;
+      }
+      .binary-clock {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .binary-clock span {
+        font-size: 3rem;
+        margin: 0.5rem 0;
+      }
+
+      @media screen and (min-width: 768px) {
+        .binary-clock span {
+          font-size: 6rem;
+          margin: 0 1rem;
+        }
+        .binary-clock {
+          flex-direction: row;
+        }
+      }  
+    </style>
+  </head>
+  <body>
+    <div class="binary-clock">
+      <span id="hours"></span>
+      <span>:</span>
+      <span id="minutes"></span>
+      <span>:</span>
+      <span id="seconds"></span>
+    </div>
+    <script>
+      function updateClock() {
+        const date = new Date();
+
+        const hours = date.getHours().toString(2).padStart(6, '0');
+        const minutes = date.getMinutes().toString(2).padStart(6, '0');
+        const seconds = date.getSeconds().toString(2).padStart(6, '0');
+
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+      }
+
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
